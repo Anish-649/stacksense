@@ -1,5 +1,5 @@
 {
-  "name": "stacksense",
+  "name": "@anish/stacksense",
   "version": "1.0.0",
   "description": "Universal AI-powered CLI debugging assistant",
   "main": "src/engine/index.js",

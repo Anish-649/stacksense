@@ -10,7 +10,7 @@ const { matchJava } = require('../../src/engine/patterns/java');
 const { matchGit } = require('../../src/engine/patterns/git');
 const { matchGeneral } = require('../../src/engine/patterns/general');
 const { callGemini } = require('../services/gemini');
-const { searchSimilar } = require('../../src/history');
+const { searchSimilar, searchSimilarByText } = require('../../src/history');
 
 const MATCHERS = {
   python: matchPython,
@@ -64,27 +64,31 @@ router.post('/explain', async (req, res) => {
     // layer 2 — search history database
     console.log(`[StackSense] Layer 2 — searching history database`);
 
-    // extract error type from text for history search
     const errorType = extractErrorType(sanitized);
+    let historical = null;
 
     if (errorType) {
-      const historical = searchSimilar(errorType, language);
+      historical = searchSimilar(errorType, language);
+    }
 
-      if (historical) {
-        console.log(`[StackSense] Layer 2 matched — found in history`);
-        return res.status(200).json({
-          success: true,
-          data: {
-            what: historical.what,
-            where: historical.where_text,
-            why: historical.why,
-            fix: historical.fix,
-            type: historical.type,
-            language: historical.language,
-            source: 'history'
-          }
-        });
-      }
+    if (!historical) {
+      historical = searchSimilarByText(sanitized, language);
+    }
+
+    if (historical) {
+      console.log(`[StackSense] Layer 2 matched — found in history`);
+      return res.status(200).json({
+        success: true,
+        data: {
+          what: historical.what,
+          where: historical.where_text,
+          why: historical.why,
+          fix: historical.fix,
+          type: historical.type,
+          language: historical.language,
+          source: 'history'
+        }
+      });
     }
 
     // layer 3 — gemini api

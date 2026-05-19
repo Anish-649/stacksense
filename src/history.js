@@ -123,5 +123,30 @@ function searchSimilar(errorType, language) {
     return null;
   }
 }
+function searchSimilarByText(errorText, language) {
+  try {
+    // extract key error words to search by
+    const keywords = errorText
+      .split(/\s+/)
+      .filter(w => w.length > 5)
+      .slice(0, 5);
 
-module.exports = { saveError, getHistory, getPatterns, searchSimilar, LOG_PATH };
+    for (const keyword of keywords) {
+      const result = db.prepare(`
+        SELECT * FROM errors
+        WHERE language = ?
+        AND (raw_error LIKE ? OR what LIKE ?)
+        ORDER BY timestamp DESC
+        LIMIT 1
+      `).get(language, `%${keyword}%`, `%${keyword}%`);
+
+      if (result) return result;
+    }
+
+    return null;
+  } catch (err) {
+    return null;
+  }
+}
+
+module.exports = { saveError, getHistory, getPatterns, searchSimilar, searchSimilarByText, LOG_PATH };
