@@ -1,10 +1,10 @@
 {
-  "name": "@anish/stacksense",
+  "name": "stacksense-cli",
   "version": "1.0.0",
   "description": "Universal AI-powered CLI debugging assistant",
   "main": "src/engine/index.js",
   "bin": {
-    "stacksense": "./bin/cli.js"
+    "stacksense": "bin/cli.js"
   },
   "scripts": {
     "start": "node server/index.js",

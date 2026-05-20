@@ -1,0 +1,19 @@
+# test files
+tests/
+coverage/
+test.py
+test2.py
+test3.py
+test3.js
+test4.js
+test_custom.py
+
+# images and SVG
+*.png
+*.svg
+image.png
+
+# dev files
+.env
+.env.*
+nodemon.json
