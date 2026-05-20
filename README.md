@@ -52,17 +52,17 @@ Layer 3 — Gemini API → explain + save to history
 
 ## Installation
 
-Requirements: Node.js 18+, npm
-
 ```bash
-npm install -g stacksense-cli        
+npm install -g stacksense-cli
 ```
-Create a `.env` file:
 
-Get a free Gemini key at [aistudio.google.com](https://aistudio.google.com)
-```bash
-GEMINI_API_KEY=your_api_key     //put this in .env file
+No setup needed. The CLI connects to the live server automatically.
+
+For your own Gemini key, create `~/.stacksense/.env`:
 ```
+GEMINI_API_KEY=your_key_here
+```
+
 ## Commands
 
 ```bash

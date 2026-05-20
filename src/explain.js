@@ -4,7 +4,7 @@ require('dotenv').config();
 const axios = require('axios');
 const { saveError } = require('./history');
 
-const SERVER_URL = process.env.STACKSENSE_SERVER_URL || 'http://localhost:3000';
+const SERVER_URL = process.env.STACKSENSE_SERVER_URL || 'https://stacksense.onrender.com';
 
 async function explainError(errorText) {
   try {
