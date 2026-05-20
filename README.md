@@ -60,8 +60,9 @@ npm install -g stacksense-cli
 Create a `.env` file:
 
 Get a free Gemini key at [aistudio.google.com](https://aistudio.google.com)
+```bash
 GEMINI_API_KEY=your_api_key     //put this in .env file
----
+```
 ## Commands
 
 ```bash
