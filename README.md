@@ -50,6 +50,18 @@ Layer 3 — Gemini API → explain + save to history
 
 ---
 
+## Installation
+
+Requirements: Node.js 18+, npm
+
+```bash
+npm install -g stacksense-cli        
+```
+Create a `.env` file:
+
+Get a free Gemini key at [aistudio.google.com](https://aistudio.google.com)
+GEMINI_API_KEY=your_api_key     //put this in .env file
+---
 ## Commands
 
 ```bash
@@ -78,19 +90,7 @@ stacksense log                     # print full error history
 
 ---
 
-## Installation
 
-Requirements: Node.js 18+, npm
-
-```bash
-npm install -g stacksense
-```
-
-Create a `.env` file:
-
-Get a free Gemini key at [aistudio.google.com](https://aistudio.google.com)
-
----
 
 ## Run Locally
 
@@ -192,7 +192,7 @@ If the server is unreachable, the CLI falls back to the local pattern engine aut
 ---
 ## Test case
  --npm run test:coverage
- 
+
  PASS  tests/patterns.test.js
   Python patterns
     √ detects ModuleNotFoundError (7 ms)
